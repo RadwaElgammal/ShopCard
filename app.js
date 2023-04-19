@@ -6,11 +6,11 @@ const cors = require('cors');
 
 const server=express();
 server.use(cors());
-const bodyParser =require("body-parser");
-
-const userRoutes = require("./Models/userModel");
+const bodyParser =require("body-parser")
+const userRoutes = require("./Routes/user");
 const authenticationRouter = require("./Routes/authentication");
 const authenticationMW = require ("./Middlewares/authenticationMW");
+
 
 require("dotenv").config();
 
@@ -35,4 +35,15 @@ server.use(express.json());
 //routes
 server.use(authenticationRouter);
 server.use(authenticationMW);
+
 server.use(userRoutes);
+
+//Not Found MW
+server.use((request ,response, next)=>{
+    response.status(404).json({data:"Not Fount"});
+});
+
+//Error MW
+server.use((error,request,response,next)=>{
+    response.status(500).json({message:"Error "+error});
+});
