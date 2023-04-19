@@ -8,8 +8,8 @@ const server=express();
 server.use(cors());
 const bodyParser =require("body-parser");
 
-const userRoutes = require("./Models/user");
-const authenticationRouter = require("./Models/authentication");
+const userRoutes = require("./Models/userModel");
+const authenticationRouter = require("./Routes/authentication");
 const authenticationMW = require ("./Middlewares/authenticationMW");
 
 require("dotenv").config();
