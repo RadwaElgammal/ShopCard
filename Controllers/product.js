@@ -8,6 +8,10 @@ const ProductSchema = mongoose.model('Products');
 const catSchema = mongoose.model('Category');
 exports.getAllProducts=(request , response , next)=>{
 
+    
+    const query = {};
+    if (request.query.price) query.price = request.query.price;
+
     const page = request.query.page *1 || 1;
     const limit = request.query.limit *1 || 10;
     const skip = (page-1) * limit;
@@ -19,7 +23,20 @@ exports.getAllProducts=(request , response , next)=>{
     })
     .catch((error)=>next(error)) ;
 };
-
+exports.addProduct =(request,response,next)=>{
+    let newprd = new ProductSchema({
+        prdName:request.body.prdName,
+        price:request.body.price,
+        quantity:request.body.quantity,
+        description:request.body.description,
+        category:request.body.category
+    });
+    newprd.save()
+        .then(result =>{
+            response.status(201).json({Message:"new product Added"});
+        })
+        .catch(error => next(error));
+}
 // exports.deleteProducts= (request,response,next)=>{
 //     ProductSchema.deleteMany(query)
 //     .then((data)=>{

@@ -7,6 +7,8 @@ const router = express.Router();
 router.route("/Products")
     .get(authenticationMW.isClientOrAdmin,
         controller.getAllProducts)
+    .post(authenticationMW.isAdmin,
+        controller.addProduct)
     // .delete(
     //     authenticationMW.isAdmin,
     //     controller.deleteProducts)

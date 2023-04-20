@@ -8,6 +8,9 @@ const catSchema = mongoose.model('Category');
 
 module.exports.getAllCategories=(request , response , next)=>{
 
+    const query = {};
+    if (request.query.catName) query.catName = request.query.catName;
+
     const page = request.query.page *1 || 1;
     const limit = request.query.limit *1 || 10;
     const skip = (page-1) * limit;
@@ -20,6 +23,18 @@ module.exports.getAllCategories=(request , response , next)=>{
     .catch((error)=>next(error)) ;
 };
 
+exports.addCategory=(request,response,next)=>{
+    let newcategory = new catSchema({
+        catName:request.body.catName,
+        description:request.body.description,
+
+    });
+    newcategory.save()
+        .then(result =>{
+            response.status(201).json({Message:"new category Added"});
+        })
+        .catch(error => next(error));
+}
 // exports.deleteCategory= (request,response,next)=>{
 //     catSchema.deleteMany(query)
 //     .then((data)=>{

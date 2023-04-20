@@ -9,6 +9,9 @@ const router = express.Router();
 router.route("/Category")
     .get(authenticationMW.isClientOrAdmin,
         controller.getAllCategories)
+        .post(  
+          authenticationMW.isAdmin,
+            controller.addCategory)
     // .delete(
     //     authenticationMW.isAdmin,
     //     controller.deleteCategory)
