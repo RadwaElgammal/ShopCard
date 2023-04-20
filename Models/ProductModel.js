@@ -9,9 +9,10 @@ const productSchema = new mongoose.Schema({
     quantity:{type:Number,default:0},
     description: { type: String },
     category: { type: mongoose.Schema.Types.Number, ref: 'Category' },
-    image:{type:String }
+    //image:{type:String }
 },{_id:false}
 );
-productSchema.plugin(AutoIncreament,{id:'productCounter'});
+productSchema.plugin(AutoIncreament, { inc_field: '_id' ,id:'productCounter'});
+
 mongoose.model("Products",productSchema);
 
