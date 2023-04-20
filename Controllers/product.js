@@ -15,13 +15,13 @@ exports.getAllProducts=(request , response , next)=>{
     const page = request.query.page *1 || 1;
     const limit = request.query.limit *1 || 10;
     const skip = (page-1) * limit;
-    
-    ProductSchema.find(query).populate({path:'Category'}).skip(skip).limit(limit)
-    .then((data)=>{
-       let prdAfterSort = sortPatients(data,request.query)
-        response.status(200).json(prdAfterSort);
+
+    ProductSchema.find(query).populate({path:'category'})
+    .then(data=>{
+        console.log(data)
+        response.status(201).json(data)
     })
-    .catch((error)=>next(error)) ;
+    .catch(error=>next(error));
 };
 exports.addProduct =(request,response,next)=>{
     let newprd = new ProductSchema({
@@ -47,7 +47,7 @@ exports.addProduct =(request,response,next)=>{
 
 exports.getProductByID= (request,response,next)=>{
     patientSchema.findOne({_id:request.params.id})
-    .populate({path:"Category"})
+    .populate({path:"category"})
     .then((data)=>{
         if (data != null) {
             if (request.role == 'client' ||request.role == 'admin') {

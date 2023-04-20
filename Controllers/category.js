@@ -4,8 +4,9 @@ const { Result } = require("express-validator");
 const mongoose = require ("mongoose");
 
 require ("../Models/categoryModel");
-const categorySchema = mongoose.model('Category');
-console.log(categorySchema)
+const catSchema = mongoose.model('Category');
+
+
 module.exports.getAllCategories=(request , response , next)=>{
 
     const query = {};

@@ -37,8 +37,8 @@ server.use(express.json());
 
 
 //routes
-// server.use(authenticationRouter);
-// server.use(authenticationMW);
+server.use(authenticationRouter);
+server.use(authenticationMW);
 server.use(userRoutes);
 
 server.use(categoryRoutes);
