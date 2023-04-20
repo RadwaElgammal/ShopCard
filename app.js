@@ -37,8 +37,8 @@ server.use(express.json());
 
 
 //routes
-server.use(authenticationRouter);
-server.use(authenticationMW);
+// server.use(authenticationRouter);
+// server.use(authenticationMW);
 server.use(userRoutes);
 
 server.use(categoryRoutes);
@@ -46,7 +46,7 @@ server.use(productRoutes);
 
 //Not Found MW
 server.use((request ,response, next)=>{
-    response.status(404).json({data:"Not Fount"});
+    response.status(404).json({data:"Not Found"});
 });
 
 //Error MW

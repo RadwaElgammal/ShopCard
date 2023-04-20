@@ -4,8 +4,8 @@ const { Result } = require("express-validator");
 const mongoose = require ("mongoose");
 
 require ("../Models/categoryModel");
-const catSchema = mongoose.model('Category');
-
+const categorySchema = mongoose.model('Category');
+console.log(categorySchema)
 module.exports.getAllCategories=(request , response , next)=>{
 
     const query = {};
@@ -23,18 +23,28 @@ module.exports.getAllCategories=(request , response , next)=>{
     .catch((error)=>next(error)) ;
 };
 
-exports.addCategory=(request,response,next)=>{
-    let newcategory = new catSchema({
-        catName:request.body.catName,
-        description:request.body.description,
+exports.addCategory=async (request,response,next)=>{
+    const {catName,description } = request.body;
 
+    let newcategory = new categorySchema({
+        catName:catName,
+        description:description,
     });
-    newcategory.save()
-        .then(result =>{
-            response.status(201).json({Message:"new category Added"});
-        })
-        .catch(error => next(error));
+    console.log(newcategory)
+    console.log(await newcategory.save())
+   
+    // .then(result => {
+    //     console.log(result)
+    //     console.log("res" + newcategory);
+    //     response.status(200).json({ Message: "new category Added" });
+    // })
+    // .catch(error => {
+    //     response.status(500).json({ error: error.message });
+    // });
+    response.status(200).json({ Message: "new category Added" });
+
 }
+
 // exports.deleteCategory= (request,response,next)=>{
 //     catSchema.deleteMany(query)
 //     .then((data)=>{

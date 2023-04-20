@@ -10,7 +10,7 @@ router.route("/Category")
     .get(authenticationMW.isClientOrAdmin,
         controller.getAllCategories)
         .post(  
-          authenticationMW.isAdmin,
+        //   authenticationMW.isAdmin,
             controller.addCategory)
     // .delete(
     //     authenticationMW.isAdmin,
