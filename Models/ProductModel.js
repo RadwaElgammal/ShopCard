@@ -8,7 +8,7 @@ const productSchema = new mongoose.Schema({
     price: { type: Number, required: true },
     quantity:{type:Number,default:0},
     description: { type: String },
-    category: { type: mongoose.Schema.Types.ObjectId, ref: 'Category' },
+    category: { type: mongoose.Schema.Types.Number, ref: 'Category' },
     image:{type:String }
 },{_id:false}
 );
