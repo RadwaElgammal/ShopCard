@@ -1,15 +1,15 @@
 const express = require("express");
 const authenticationMW=require("./../Middlewares/Authorization")
-const controller = require("../Controllers/productController")
+const controller = require("../Controllers/product")
 const router = express.Router();
 
 
 router.route("/Products")
     .get(authenticationMW.isClientOrAdmin,
         controller.getAllProducts)
-    .delete(
-        authenticationMW.isAdmin,
-        controller.deleteProducts)
+    // .delete(
+    //     authenticationMW.isAdmin,
+    //     controller.deleteProducts)
 
 
 
@@ -17,9 +17,11 @@ router.route("/Products")
         .get(
             authenticationMW.isClientOrAdmin,
                 controller.getProductByID)
-        .delete( 
-                authenticationMW.isAdmin,
-                controller.deleteProductByID)
+        // .delete( 
+        //         authenticationMW.isAdmin,
+        //         controller.deleteProductByID)
         .patch(  
                 authenticationMW.isAdmin,
                 controller.updateProduct)
+
+  module.exports = router;

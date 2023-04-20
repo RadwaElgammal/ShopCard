@@ -1,10 +1,12 @@
-const { request, response } = require('express');
-const mongoose = require('mongoose');
 
-require('../Models/categoryModel');
+const {request,response} = require("express");
+const { Result } = require("express-validator");
+const mongoose = require ("mongoose");
 
+require ("../Models/categoryModel");
 const catSchema = mongoose.model('Category');
-exports.getAllCategories=(request , response , next)=>{
+
+module.exports.getAllCategories=(request , response , next)=>{
 
     const page = request.query.page *1 || 1;
     const limit = request.query.limit *1 || 10;
@@ -12,21 +14,21 @@ exports.getAllCategories=(request , response , next)=>{
     
     catSchema.find(query).skip(skip).limit(limit)
     .then((data)=>{
-       let catAfterSort = sortPatients(data,request.query)
-        response.status(200).json(catAfterSort);
+      
+        response.status(200).json(data);
     })
     .catch((error)=>next(error)) ;
 };
 
-exports.deleteCategory= (request,response,next)=>{
-    catSchema.deleteMany(query)
-    .then((data)=>{
-        response.status(200).json({message:"delete all categories"});
-    })
-    .catch((error)=>next(error));
-};
+// exports.deleteCategory= (request,response,next)=>{
+//     catSchema.deleteMany(query)
+//     .then((data)=>{
+//         response.status(200).json({message:"delete all categories"});
+//     })
+//     .catch((error)=>next(error));
+// };
 
-exports.getCategoryByID= (request,request,next)=>{
+module.exports.getCategoryByID= (request,response,next)=>{
     catSchema.findOne({_id:request.params.id})
     .then((data)=>{
         if (data != null) {
@@ -45,12 +47,13 @@ exports.getCategoryByID= (request,request,next)=>{
 }
 
 module.exports.deleteCategoryByID = (request, response, next)=>{
-    catSchema.findByIdAndDelete({_id:request.params.id})
+    catSchema.findByIdAndRemove({_id:request.params.id})
         .then(()=>{
             response.status(200).json({message:"deleted"+request.params.id});
         })
         .catch((error)=>next(error));
 };
+
 
 module.exports.updateCategory = (request, response, next)=>{
     catSchema.findByIdAndUpdate({

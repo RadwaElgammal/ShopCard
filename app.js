@@ -8,6 +8,8 @@ const server=express();
 server.use(cors());
 const bodyParser =require("body-parser")
 const userRoutes = require("./Routes/user");
+const categoryRoutes = require("./Routes/category");
+const productRoutes = require("./Routes/product");
 const authenticationRouter = require("./Routes/authentication");
 const authenticationMW = require ("./Middlewares/authenticationMW");
 
@@ -32,11 +34,15 @@ mongoose.connect(process.env.DB_URL)
 
 server.use(morgan('combined'));
 server.use(express.json());
+
+
 //routes
 server.use(authenticationRouter);
 server.use(authenticationMW);
-
 server.use(userRoutes);
+
+server.use(categoryRoutes);
+server.use(productRoutes);
 
 //Not Found MW
 server.use((request ,response, next)=>{

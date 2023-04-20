@@ -28,7 +28,7 @@ exports.getAllProducts=(request , response , next)=>{
 //     .catch((error)=>next(error));
 // };
 
-exports.getProductByID= (request,request,next)=>{
+exports.getProductByID= (request,response,next)=>{
     patientSchema.findOne({_id:request.params.id})
     .populate({path:"Category"})
     .then((data)=>{
