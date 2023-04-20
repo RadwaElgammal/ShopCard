@@ -10,7 +10,7 @@ router.route("/Category")
     .get(authenticationMW.isClientOrAdmin,
         controller.getAllCategories)
         .post(  
-        //   authenticationMW.isAdmin,
+            authenticationMW.isAdmin,
             controller.addCategory)
     // .delete(
     //     authenticationMW.isAdmin,
@@ -22,9 +22,9 @@ router.route("/Category")
         .get(
             authenticationMW.isClientOrAdmin,
                 controller.getCategoryByID)
-        // .delete( 
-        //         authenticationMW.isAdmin,
-        //         controller.deleteCategoryByID)
+        .delete( 
+                authenticationMW.isAdmin,
+                controller.deleteCategoryByID)
         .patch(  
                 authenticationMW.isAdmin,
                 controller.updateCategory)

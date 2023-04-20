@@ -40,7 +40,6 @@ server.use(express.json());
 server.use(authenticationRouter);
 server.use(authenticationMW);
 server.use(userRoutes);
-
 server.use(categoryRoutes);
 server.use(productRoutes);
 
