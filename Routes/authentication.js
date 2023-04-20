@@ -11,9 +11,9 @@ router.route("/login")
 
 router.route("/signUp")   
         .post(
-       //     upload.single("image"),
-            registerValidation.userbodyValidation,
-            validator,
+           upload.single("image"),
+       //      registerValidation.userbodyValidation,
+       //      validator,
             controller.signUp)
 
 module.exports = router;
