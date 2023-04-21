@@ -16,6 +16,8 @@ const authenticationMW = require ("./Middlewares/authenticationMW");
 
 require("dotenv").config();
 
+/////////////these steps to onnect to mongoos 
+
 let port=process.env.PORT||8080;
 
 mongoose.set('strictQuery', true);

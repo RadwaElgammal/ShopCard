@@ -2,6 +2,8 @@ const mongoose = require('mongoose');
 const address = require('./adressModel');
 const AutoIncreament = require('mongoose-sequence')(mongoose);
 
+////////////model of user and its data 
+
 const productSchema = new mongoose.Schema({
     _id:{type:Number},
     prdName: {type:String , required:true,unique:true},

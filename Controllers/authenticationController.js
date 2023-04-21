@@ -5,10 +5,13 @@ const { request } = require("http");
 const { response } = require("express");
 require("./../Models/userModel");
 
+/////////auth controoler which contains function of sign up and log in 
 
 const saltRounds = 10;
 
 const userSchema = mongoose.model("users")
+
+//////////sign up function which takes data from user and added them to the systm 
 
 module.exports.signUp = async(request, response , next)=>{
     console.log(request);
@@ -40,6 +43,7 @@ module.exports.signUp = async(request, response , next)=>{
         .catch(err=>next(err));
 }
 
+////////log in function whih takes emain and psswors and detecate role of the user 
 
 module.exports.login=(async(request,response,next)=>{
 

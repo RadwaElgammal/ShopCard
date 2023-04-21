@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 const address = require('./adressModel');
 
+////////////model of user and its data 
+
 const userSchema = new mongoose.Schema({
     _id : {type :mongoose.Types.ObjectId , auto:true},
     fullName: {type:String , required:true},

@@ -6,6 +6,9 @@ const mongoose = require ("mongoose");
 require ("../Models/categoryModel");
 const catSchema = mongoose.model('Category');
 
+/////////category controoler which contains function of sign up and log in 
+
+//fun to return all categories
 
 module.exports.getAllCategories=(request , response , next)=>{
 
@@ -23,6 +26,8 @@ module.exports.getAllCategories=(request , response , next)=>{
     })
     .catch((error)=>next(error)) ;
 };
+
+///////fun to add a specefic category
 
 exports.addCategory=async (request,response,next)=>{
     const {catName,description } = request.body;
@@ -52,6 +57,8 @@ exports.addCategory=async (request,response,next)=>{
 //     .catch((error)=>next(error));
 // };
 
+///////////fun to get specefic category
+
 module.exports.getCategoryByID= (request,response,next)=>{
     catSchema.findOne({_id:request.params.id})
     .then((data)=>{
@@ -70,6 +77,8 @@ module.exports.getCategoryByID= (request,response,next)=>{
     .catch((error)=>next(error));
 }
 
+/////////////////fun to delete specefic category
+
 module.exports.deleteCategoryByID = (request, response, next)=>{
     catSchema.findByIdAndRemove({_id:request.params.id})
         .then(()=>{
@@ -78,6 +87,7 @@ module.exports.deleteCategoryByID = (request, response, next)=>{
         .catch((error)=>next(error));
 };
 
+/////////////////fun to update specefic category
 
 module.exports.updateCategory = (request, response, next)=>{
     catSchema.findByIdAndUpdate({

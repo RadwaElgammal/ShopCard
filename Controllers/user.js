@@ -8,7 +8,7 @@ const jwt = require("jsonwebtoken");
 
 const saltRounds = 10;
 
-
+//fun to change user password
 module.exports.changePassword =async (request, response, next)=>{
 
     try
@@ -83,6 +83,7 @@ const sortUsers = (data,query)=>{
     });
 };
 
+////////fun to get all users
 exports.getAllUsers = (request , response , next)=>{
  
     const query = {};
@@ -101,6 +102,7 @@ exports.getAllUsers = (request , response , next)=>{
     .catch(error=>next(error));
 };
 
+////////fun to delete all users
 
 exports.deleteUsers = (request , response , next)=>{
     try{
@@ -125,6 +127,7 @@ exports.deleteUsers = (request , response , next)=>{
     }
     
 };
+////////fun to update  users
 
 exports.updateUser = (request,response,next)=>{
     try{

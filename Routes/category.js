@@ -5,12 +5,13 @@ const validator = require("./../Middlewares/errorValidation");
 
 const router = express.Router();
 
+/////////////router of cateegory which route to the category
 
 router.route("/Category")
-    .get(authenticationMW.isClientOrAdmin,
+    .get(authenticationMW.isClientOrAdmin,      //get categories
         controller.getAllCategories)
         .post(  
-            authenticationMW.isAdmin,
+            authenticationMW.isAdmin,           //add category
             controller.addCategory)
     // .delete(
     //     authenticationMW.isAdmin,
@@ -20,13 +21,13 @@ router.route("/Category")
 
  router.route("/Category/:id")
         .get(
-            authenticationMW.isClientOrAdmin,
+            authenticationMW.isClientOrAdmin,       //get specific one
                 controller.getCategoryByID)
         .delete( 
-                authenticationMW.isAdmin,
+                authenticationMW.isAdmin,           //delete one
                 controller.deleteCategoryByID)
         .patch(  
-                authenticationMW.isAdmin,
+                authenticationMW.isAdmin,           //update one
                 controller.updateCategory)
 
 module.exports = router

@@ -10,21 +10,22 @@ const authenticationMW=require("./../Middlewares/Authorization")
 
 const upload = require("./../Middlewares/uploadImageMW");
 
+///////////router to get users
 
-router.route("/users")
-    .get(authenticationMW.isAdmin,
+router.route("/users")      
+    .get(authenticationMW.isAdmin,          //get all users
         controller.getAllUsers)
     .delete(
-        authenticationMW.isAdmin,
+        authenticationMW.isAdmin,           //delete all users
         controller.deleteUsers)
     .patch(
-        authenticationMW.isAdmin,
+        authenticationMW.isAdmin,           //update users
         upload.single("image"),
         userValidation.userbodyValidation,
         validator,
         controller.updateUser)
 
 
-router.route("/changePassword")
+router.route("/changePassword")             //router of change password 
         .post(controller.changePassword)
 module.exports = router

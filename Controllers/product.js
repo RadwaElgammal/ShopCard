@@ -4,8 +4,14 @@ const mongoose = require('mongoose');
 require('../Models/ProductModel');
 require('../Models/categoryModel');
 
+/////////product controoler which contains function of sign up and log in 
+
 const ProductSchema = mongoose.model('Products');
 const catSchema = mongoose.model('Category');
+
+/////////////////fun to get all products
+
+
 exports.getAllProducts=(request , response , next)=>{
 
     
@@ -23,6 +29,8 @@ exports.getAllProducts=(request , response , next)=>{
     })
     .catch(error=>next(error));
 };
+/////////////////fun to add specefic product
+
 exports.addProduct =(request,response,next)=>{
     let newprd = new ProductSchema({
         prdName:request.body.prdName,
@@ -44,6 +52,7 @@ exports.addProduct =(request,response,next)=>{
 //     })
 //     .catch((error)=>next(error));
 // };
+/////////////////fun to get specefic product
 
 exports.getProductByID= (request,response,next)=>{
     patientSchema.findOne({_id:request.params.id})
@@ -63,6 +72,7 @@ exports.getProductByID= (request,response,next)=>{
     })
     .catch((error)=>next(error));
 }
+/////////////////fun to delete specefic product
 
 module.exports.deleteProductByID = (request, response, next)=>{
     patientSchema.findByIdAndDelete({_id:request.params.id})
@@ -71,6 +81,7 @@ module.exports.deleteProductByID = (request, response, next)=>{
         })
         .catch((error)=>next(error));
 };
+/////////////////fun to update specefic product
 
 module.exports.updateProduct = async (request, response, next)=>{
    try{
