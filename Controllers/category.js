@@ -27,7 +27,7 @@ module.exports.getAllCategories=(request , response , next)=>{
 exports.addCategory=async (request,response,next)=>{
     const {catName,description } = request.body;
 
-    let newcategory = new categorySchema({
+    let newcategory = new catSchema({
         catName:catName,
         description:description,
     });
