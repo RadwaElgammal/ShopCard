@@ -12,9 +12,9 @@ router.route("/Category")
         .post(  
             authenticationMW.isAdmin,
             controller.addCategory)
-    // .delete(
-    //     authenticationMW.isAdmin,
-    //     controller.deleteCategory)
+    .delete(
+        authenticationMW.isAdmin,
+        controller.deleteCategory)
 
 
 
