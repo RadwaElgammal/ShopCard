@@ -32,16 +32,15 @@ exports.addCategory=async (request,response,next)=>{
         description:description,
     });
     console.log(newcategory)
-    console.log(await newcategory.save())
-   
-    // .then(result => {
-    //     console.log(result)
-    //     console.log("res" + newcategory);
-    //     response.status(200).json({ Message: "new category Added" });
-    // })
-    // .catch(error => {
-    //     response.status(500).json({ error: error.message });
-    // });
+    await newcategory.save()
+    .then(result => {
+        console.log(result)
+        console.log("res" + newcategory);
+        response.status(200).json({ Message: "new category Added" });
+    })
+    .catch(error => {
+        response.status(500).json({ error: error.message });
+    });
     response.status(200).json({ Message: "new category Added" });
 
 }
