@@ -19,9 +19,9 @@ router.route("/Products")
         .get(
             authenticationMW.isClientOrAdmin,
                 controller.getProductByID)
-        // .delete( 
-        //         authenticationMW.isAdmin,
-        //         controller.deleteProductByID)
+        .delete( 
+                authenticationMW.isAdmin,
+                controller.deleteProductByID)
         .patch(  
                 authenticationMW.isAdmin,
                 controller.updateProduct)
