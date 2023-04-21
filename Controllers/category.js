@@ -41,7 +41,6 @@ exports.addCategory=async (request,response,next)=>{
     .catch(error => {
         response.status(500).json({ error: error.message });
     });
-    response.status(200).json({ Message: "new category Added" });
 
 }
 
